@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedDataService {
-  constructor() {}
+  constructor(private router: Router) {}
 
   // Behavior Subjects - Variables
   loggedInStatus = new BehaviorSubject<boolean>(false);
@@ -16,5 +17,10 @@ export class SharedDataService {
   // Setters
   setLoggedInStatus(val: boolean) {
     this.loggedInStatus.next(val);
+  }
+
+  // Global Functions
+  routeTo(route: string) {
+    this.router.navigate([route]);
   }
 }
